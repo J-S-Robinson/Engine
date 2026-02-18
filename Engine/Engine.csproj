@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <!-- Ensure RID-specific native assets (SDL2.dll, etc.) are copied to output -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Stride" Version="4.0.1.1400" />
+    <PackageReference Include="Stride.Engine" Version="4.0.1.1400" />
+  </ItemGroup>
+
+</Project>

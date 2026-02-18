@@ -1,0 +1,42 @@
+# Visual Studio / IDE
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+
+# NuGet
+*.nupkg
+packages/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Stride/runtime caches (usually under bin output)
+**/cache/
+**/data/
+**/local/
+**/roaming/
+**/x64/
+**/x86/
+
+# Rider / JetBrains
+*.iml
+
+# Ignore publish output
+publish/
+
+# Keep user secrets out
+secrets.json
