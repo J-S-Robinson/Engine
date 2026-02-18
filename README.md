@@ -34,3 +34,26 @@ Minimal Stride-based demo showing a 4×4 chessboard and a movable circle.
 - Input mapping: `Engine/Input/NumpadInputHandler.cs`
 - Animation + queueing: `Engine/Animation/MoveAnimator.cs`
 - Rendering + textures: `Engine/Graphics/BoardRenderer.cs`
+
+## Tests
+- Game tests: `Engine.Tests.Game`
+- Animation tests: `Engine.Tests.Animation`
+- Graphics tests: `Engine.Tests.Graphics`
+
+Run all tests:
+```
+dotnet test Engine.slnx
+```
+
+Run by category:
+```
+dotnet test Engine.slnx --filter "Category=Game"
+dotnet test Engine.slnx --filter "Category=Animation"
+dotnet test Engine.slnx --filter "Category=GraphicsLogic"
+dotnet test Engine.slnx --filter "Category=GraphicsIntegration"
+```
+
+Run engine-free test set:
+```
+dotnet test Engine.slnx --filter "Category!=GraphicsIntegration"
+```

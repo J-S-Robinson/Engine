@@ -121,10 +121,15 @@ namespace Engine.Animation
 
         public void Update(GameTime gameTime, GameState state)
         {
+            Update((float)gameTime.Elapsed.TotalSeconds, state);
+        }
+
+        public void Update(float deltaSeconds, GameState state)
+        {
             // Attempted bump animation takes precedence when active
             if (_isAttempting)
             {
-                _attemptElapsed += (float)gameTime.Elapsed.TotalSeconds;
+                _attemptElapsed += deltaSeconds;
                 float half = AttemptPhaseDuration;
                 float total = half * 2f;
                 if (_attemptElapsed < half)
@@ -145,7 +150,7 @@ namespace Engine.Animation
                     }
 
                     // update color-hit while returning (and drive its tween)
-                    UpdateColorHit((float)gameTime.Elapsed.TotalSeconds);
+                    UpdateColorHit(deltaSeconds);
 
                     float at2 = Math.Min((_attemptElapsed - half) / half, 1f);
                     var aeased2 = EaseOutCubic(at2);
@@ -157,7 +162,7 @@ namespace Engine.Animation
                 CirclePosition = _attemptStartPos;
                 _isAttempting = false;
                 // ensure color-hit finishes correctly
-                UpdateColorHit((float)gameTime.Elapsed.TotalSeconds);
+                UpdateColorHit(deltaSeconds);
 
                 if (_moveQueue.Count > 0)
                 {
@@ -196,12 +201,12 @@ namespace Engine.Animation
             }
 
             // during normal move animation, also update color-hit if active
-            UpdateColorHit((float)gameTime.Elapsed.TotalSeconds);
+            UpdateColorHit(deltaSeconds);
 
             if (!_isAnimating)
                 return;
 
-            _animElapsed += (float)gameTime.Elapsed.TotalSeconds;
+            _animElapsed += deltaSeconds;
             float t = Math.Min(_animElapsed / GameConfig.AnimDurationSeconds, 1f);
             float eased = EaseOutCubic(t);
             CirclePosition = Vector2.Lerp(_animStartPos, _animTargetPos, eased);

@@ -1,5 +1,4 @@
 using Engine.Game;
-using System;
 using SharpDX.Direct3D11;
 using Stride.Core.Mathematics;
 using Stride.Graphics;
@@ -36,7 +35,7 @@ namespace Engine.Graphics
                 textureFlags: TextureFlags.ShaderResource,
                 usage: GraphicsResourceUsage.Dynamic);
 
-            var circleBytes = MakeFilledCircleRgba(diameter);
+            var circleBytes = CircleTextureGenerator.MakeFilledCircleRgba(diameter);
             _circleTex.SetData(graphicsContext.CommandList, circleBytes);
         }
 
@@ -77,37 +76,5 @@ namespace Engine.Graphics
             _spriteBatch?.Dispose();
         }
 
-        private static byte[] MakeFilledCircleRgba(int diameter)
-        {
-            var bytes = new byte[diameter * diameter * 4];
-
-            float r = diameter / 2f;
-            float cx = r;
-            float cy = r;
-            const float aa = 1.0f; // anti-alias width (pixels)
-
-            for (int y = 0; y < diameter; y++)
-            {
-                for (int x = 0; x < diameter; x++)
-                {
-                    float dx = x - cx + 0.5f;
-                    float dy = y - cy + 0.5f;
-                    float dist = MathF.Sqrt(dx * dx + dy * dy);
-
-                    // Linear alpha ramp over a ~1px band at the circle edge for smooth anti-aliasing.
-                    float alphaF = (r - dist + (aa * 0.5f)) / aa; // >1 => fully opaque, <0 => transparent
-                    alphaF = MathF.Min(1f, MathF.Max(0f, alphaF));
-                    byte a = (byte)(alphaF * 255f);
-
-                    int i = (y * diameter + x) * 4;
-                    bytes[i + 0] = 255; // R (white)
-                    bytes[i + 1] = 255; // G
-                    bytes[i + 2] = 255; // B
-                    bytes[i + 3] = a;   // A (anti-aliased)
-                }
-            }
-
-            return bytes;
-        }
     }
 }

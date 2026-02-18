@@ -1,3 +1,6 @@
 <Solution>
   <Project Path="Engine/Engine.csproj" />
+  <Project Path="Engine.Tests.Game/Engine.Tests.Game.csproj" />
+  <Project Path="Engine.Tests.Animation/Engine.Tests.Animation.csproj" />
+  <Project Path="Engine.Tests.Graphics/Engine.Tests.Graphics.csproj" />
 </Solution>
