@@ -29,5 +29,8 @@ Minimal Stride-based demo showing a 4×4 chessboard and a movable circle.
 - Numpad 5 — no-op
 
 ## Development
-- Main code: `Engine/SimpleShapesGame.cs`
-- Board size, animation and behavior are implemented in that file.
+- Orchestrator: `Engine/SimpleShapesGame.cs`
+- Game config/state: `Engine/Game/GameConfig.cs`, `Engine/Game/GameState.cs`, `Engine/Game/MoveCommand.cs`
+- Input mapping: `Engine/Input/NumpadInputHandler.cs`
+- Animation + queueing: `Engine/Animation/MoveAnimator.cs`
+- Rendering + textures: `Engine/Graphics/BoardRenderer.cs`
