@@ -32,13 +32,14 @@ namespace Engine
         {
             base.Update(gameTime);
 
-            _inputHandler.CollectPressedMoves(Input, move => _animator.QueueOrStartMove(_state, move));
+            // Update animator first so that a move completed this frame is visible to input handling
             _animator.Update(gameTime, _state);
+            _inputHandler.CollectPressedMoves(Input, move => _animator.QueueOrStartMove(_state, move));
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            _renderer.Draw(GraphicsContext, GraphicsDevice, _animator.CirclePosition, _state.GetOpponentPosition());
+            _renderer.Draw(GraphicsContext, GraphicsDevice, _animator.CirclePosition, _state.GetOpponentPosition(), _animator.CurrentTint, _animator.CurrentOpponentTint);
 
             base.Draw(gameTime);
         }

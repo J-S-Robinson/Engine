@@ -40,7 +40,7 @@ namespace Engine.Graphics
             _circleTex.SetData(graphicsContext.CommandList, circleBytes);
         }
 
-        public void Draw(GraphicsContext graphicsContext, GraphicsDevice graphicsDevice, Vector2 circlePos, Vector2 opponentPos)
+        public void Draw(GraphicsContext graphicsContext, GraphicsDevice graphicsDevice, Vector2 circlePos, Vector2 opponentPos, Color playerTint, Color opponentTint)
         {
             graphicsContext.CommandList.Clear(
                 graphicsDevice.Presenter.BackBuffer,
@@ -65,8 +65,8 @@ namespace Engine.Graphics
             }
 
             // Draw opponent (muted red) then player (green)
-            _spriteBatch.Draw(_circleTex!, opponentPos, GameConfig.OpponentTint);
-            _spriteBatch.Draw(_circleTex!, circlePos, GameConfig.CircleTint);
+            _spriteBatch.Draw(_circleTex!, opponentPos, opponentTint);
+            _spriteBatch.Draw(_circleTex!, circlePos, playerTint);
             _spriteBatch.End();
         }
 
