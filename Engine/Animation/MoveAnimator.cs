@@ -45,6 +45,11 @@ namespace Engine.Animation
                 if (!state.IsOnBoard(newPredRow, newPredCol))
                     return;
 
+                // Prevent queuing a move that would land on the opponent's cell
+                var opp = state.GetOpponentCell();
+                if (newPredRow == opp.Y && newPredCol == opp.X)
+                    return;
+
                 if (_moveQueue.Count >= GameConfig.MaxQueuedMoves)
                     return;
 

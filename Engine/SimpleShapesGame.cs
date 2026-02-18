@@ -38,7 +38,7 @@ namespace Engine
 
         protected override void Draw(GameTime gameTime)
         {
-            _renderer.Draw(GraphicsContext, GraphicsDevice, _animator.CirclePosition);
+            _renderer.Draw(GraphicsContext, GraphicsDevice, _animator.CirclePosition, _state.GetOpponentPosition());
 
             base.Draw(gameTime);
         }
