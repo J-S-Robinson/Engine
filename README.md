@@ -1,5 +1,9 @@
 # SimpleShapes Engine
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)  
+
+**Author:** John Robinson
+
 Minimal Stride-based demo showing a 4×4 chessboard and a movable circle.
 
 ## Features
@@ -27,7 +31,3 @@ Minimal Stride-based demo showing a 4×4 chessboard and a movable circle.
 ## Development
 - Main code: `Engine/SimpleShapesGame.cs`
 - Board size, animation and behavior are implemented in that file.
-
----
-
-No license specified.
